@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeDrop - Community Blood Bank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+<body>
+
+    <div class="bg-animation">
+        <div class="bg-item item-1"></div>
+        <div class="bg-item item-2"></div>
+        <div class="bg-item item-3"></div>
+        <div class="bg-item item-4"></div>
+        <div class="bg-item item-5"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">LifeDrop<span class="dot">.</span></div>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <div class="nav-links" id="nav-links">
+                <a href="#dashboard">Find Blood</a>
+                <a href="#learn">Why Donate?</a>
+                <a href="#">Requests</a>
+                <a href="#" class="btn-outline">Donor Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-slider">
+        <div class="slide active">
+            <div class="slide-content">
+                <span class="slide-tag">Community First</span>
+                <h1>Give Blood. Save Lives Locally.</h1>
+                <p>Connect directly with verified donors in your community. Whether you are in an emergency or looking to give back, every drop matters.</p>
+                <div class="hero-buttons">
+                    <a href="#dashboard" class="btn-primary">Find a Match</a>
+                    <a href="#" class="btn-secondary">Become a Donor</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <span class="slide-tag">Medical Fact</span>
+                <h1>Community Blood is Safer.</h1>
+                <p>Medical science prefers community donations. A diverse pool of local donors significantly reduces risks compared to relying on close relatives.</p>
+                <div class="hero-buttons">
+                    <a href="#learn" class="btn-outline">Understand Why</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <span class="slide-tag">Rapid Response</span>
+                <h1>Emergency Matches in Minutes.</h1>
+                <p>Time is critical. Filter donors by blood type, location, and distance to find life-saving matches near you instantly.</p>
+                <div class="hero-buttons">
+                    <a href="#dashboard" class="btn-primary">Search Donors Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-controls">
+            <button class="slider-arrow prev" aria-label="Previous slide">&#10094;</button>
+            <div class="slider-dots">
+                <span class="dot active" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+            </div>
+            <button class="slider-arrow next" aria-label="Next slide">&#10095;</button>
+        </div>
+    </header>
+
+    <main class="dashboard reveal" id="dashboard">
+        <aside class="filters">
+            <h3>Find a Donor</h3>
+            <div class="filter-group">
+                <label for="blood-type">Blood Type</label>
+                <select id="blood-type">
+                    <option value="">Select Type</option>
+                    <option value="A+">A+</option>
+                    <option value="O-">O-</option>
+                    <option value="B+">B+</option>
+                    <option value="AB+">AB+</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="location">Location / City</label>
+                <input type="text" id="location" placeholder="e.g., Downtown">
+            </div>
+            <div class="filter-group">
+                <label for="distance">Max Distance (km)</label>
+                <input type="range" id="distance" min="1" max="50" value="10" oninput="distOutput.value = distance.value">
+                <output id="distOutput">10</output> km
+            </div>
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="min-age">Min Age</label>
+                    <input type="number" id="min-age" placeholder="18" min="18">
+                </div>
+                <div class="filter-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender">
+                        <option value="any">Any</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn-primary" id="searchBtn">Search Donors</button>
+        </aside>
+
+        <section class="results">
+            <header class="results-header">
+                <h2>Available Donors <span class="badge" id="result-count">3 Found</span></h2>
+                <p>We will contact these donors on your behalf to arrange a life-saving donation.</p>
+            </header>
+            <div class="donor-grid" id="donor-grid">
+                <div class="donor-card">
+                    <div class="blood-badge">O-</div>
+                    <div class="donor-info">
+                        <h4>Community Member</h4>
+                        <p class="meta">Location: Westside Clinic area • 5km away</p>
+                        <p class="meta">Age: 28 • Gender: Male</p>
+                    </div>
+                    <button class="btn-secondary">Request Donation</button>
+                </div>
+                <div class="donor-card">
+                    <div class="blood-badge">A+</div>
+                    <div class="donor-info">
+                        <h4>Community Member</h4>
+                        <p class="meta">Location: North Park • 12km away</p>
+                        <p class="meta">Age: 34 • Gender: Female</p>
+                    </div>
+                    <button class="btn-secondary">Request Donation</button>
+                </div>
+                 <div class="donor-card">
+                    <div class="blood-badge">B+</div>
+                    <div class="donor-info">
+                        <h4>Community Member</h4>
+                        <p class="meta">Location: Eastside General • 2km away</p>
+                        <p class="meta">Age: 41 • Gender: Male</p>
+                    </div>
+                    <button class="btn-secondary">Request Donation</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section class="education-section reveal" id="learn">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Power of Community Blood</h2>
+                <p>Understanding why your donation matters more than you think.</p>
+            </div>
+            
+            <div class="info-grid">
+                <div class="info-card reveal" style="transition-delay: 0.1s;">
+                    <div class="icon">🩸</div>
+                    <h3>Why Donation is Critical</h3>
+                    <p>Blood cannot be manufactured. It can only come from generous donors. With a shelf life of just 42 days, hospitals require a constant, daily supply to treat trauma patients, perform surgeries, and support cancer treatments.</p>
+                </div>
+                
+                <div class="info-card highlight-card reveal" style="transition-delay: 0.2s;">
+                    <div class="icon">🧬</div>
+                    <h3>The Danger of Relative Donors</h3>
+                    <p>While it seems safer to get blood from a close relative, medical science prefers strangers. Directed donations from first-degree relatives carry a high risk of <strong>TA-GVHD</strong>, a fatal condition where the donor's immune cells attack the recipient's body. A diverse community pool is medically safer.</p>
+                </div>
+
+                <div class="info-card reveal" style="transition-delay: 0.3s;">
+                    <div class="icon">🤝</div>
+                    <h3>Community Reliance</h3>
+                    <p>By building a network of localized, ready-to-help strangers, we ensure that the right blood type is always nearby. Your single donation can save up to three lives in your own neighborhood.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer reveal">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h2>LifeDrop<span class="dot">.</span></h2>
+                <p>Connecting communities to save lives through seamless, localized blood donation.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="#dashboard">Find Blood</a>
+                <a href="#learn">Why Donate</a>
+                <a href="#">Register as Donor</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Emergency Contact</h4>
+                <p>📞 1-800-LIFEDROP</p>
+                <p>✉️ urgent@lifedrop.community</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 LifeDrop Community Blood Bank. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="./style/app.js"></script>
+</body>
+</html>
