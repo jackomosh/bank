@@ -119,3 +119,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+
+        // --- Live Location Logic ---
+const locationDisplay = document.getElementById('live-location');
+const getLocationBtn = document.getElementById('getLocationBtn');
+
+function getLiveLocation() {
+    if (navigator.geolocation) {
+        locationDisplay.innerText = "Locating...";
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+                // In a real app, you'd use a reverse geocoding API here 
+                // to turn these coordinates into a readable city name.
+                locationDisplay.innerText = `Lat: ${latitude.toFixed(2)}, Lon: ${longitude.toFixed(2)}`;
+            },
+            (error) => {
+                locationDisplay.innerText = "Location access denied.";
+            }
+        );
+    } else {
+        locationDisplay.innerText = "Geolocation not supported.";
+    }
+}
+
+// Initial call
+getLiveLocation();
+
+// Manual Refresh
+if (getLocationBtn) {
+    getLocationBtn.addEventListener('click', getLiveLocation);
+}
