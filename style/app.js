@@ -150,3 +150,80 @@ getLiveLocation();
 if (getLocationBtn) {
     getLocationBtn.addEventListener('click', getLiveLocation);
 }
+
+// Function to initiate a request
+window.requestDonation = function(donorName, btn) {
+    // 1. Update the Button UI
+    btn.innerText = 'Requested';
+    btn.style.backgroundColor = '#6c757d'; // Muted grey
+    btn.style.borderColor = '#6c757d';
+    btn.style.color = 'white';
+    btn.style.cursor = 'default';
+    btn.disabled = true; // Prevents multiple clicks
+
+    // 2. Logic to save to storage
+    const newRequest = {
+        id: Date.now(),
+        donor: donorName,
+        status: 'pending',
+        timestamp: new Date().toLocaleDateString()
+    };
+
+    let requests = JSON.parse(localStorage.getItem('bloodRequests') || '[]');
+    requests.push(newRequest);
+    localStorage.setItem('bloodRequests', JSON.stringify(requests));
+
+    // 3. Custom Toast UI
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML = `
+        <span style="color: var(--primary); font-size: 1.2rem;">✓</span>
+        <div>
+            <strong>Request Sent!</strong><br>
+            <small>Status: Pending for ${donorName}</small>
+        </div>
+    `;
+    
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+    }, 4000);
+};
+
+// This function moves status from 'pending' to 'accepted'
+window.acceptDonation = function(requestId) {
+    let requests = JSON.parse(localStorage.getItem('bloodRequests'));
+    
+    const requestIndex = requests.findIndex(r => r.id === requestId);
+    if (requestIndex !== -1) {
+        requests[requestIndex].status = 'accepted';
+        localStorage.setItem('bloodRequests', JSON.stringify(requests));
+        renderAdminDashboard(); // Re-draw the table
+    }
+}
+
+function renderAdminDashboard() {
+    const container = document.getElementById('admin-table-body');
+    const requests = JSON.parse(localStorage.getItem('bloodRequests') || '[]');
+    
+    container.innerHTML = requests.map(r => `
+        <tr>
+            <td>${r.donor}</td>
+            <td>${r.status}</td>
+            <td>
+                ${r.status === 'pending' ? 
+                  `<button onclick="acceptDonation(${r.id})">Approve Donation</button>` : 
+                  'Confirmed'}
+            </td>
+        </tr>
+    `).join('');
+}
+function showView(viewId) {
+            document.getElementById('login-view').style.display = 'none';
+            document.getElementById('signup-view').style.display = 'none';
+            document.getElementById('forgot-view').style.display = 'none';
+            document.getElementById(viewId).style.display = 'block';
+        }

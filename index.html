@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LifeDrop - Community Blood Bank</title>
+    <title>Life Bank - Community Blood Bank</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style/style.css">
 </head>
@@ -17,9 +17,26 @@
         <div class="bg-item item-5"></div>
     </div>
 
+    <div id="login-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Login</h3>
+            <form id="login-form">
+                <label>Email</label>
+                <input type="email" class="auth-input" required>
+                <label>Password</label>
+                <input type="password" class="auth-input" required>
+                <div id="login-error" class="auth-error">Invalid credentials.</div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Login</button>
+            </form>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">
+                <a href="#" onclick="showModal('forgot-modal')">Forgot password?</a>
+            </p>
+        </div>
+    </div>
+
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">🩸LifeDrop<span class="dot">.</span></div>
+            <div class="logo">🩸 Life Bank<span class="dot">.</span></div>
             
             <div class="hamburger" id="hamburger">
                 <span class="bar"></span>
@@ -31,7 +48,7 @@
                 <a href="#dashboard">Find Blood</a>
                 <a href="#learn">Why Donate?</a>
                 <a href="#">Requests</a>
-                <a href="#" class="btn-outline">Donor Login</a>
+                <a href="auth.html" class="btn-outline">Donor Login</a>
             </div>
         </div>
     </nav>
@@ -136,7 +153,7 @@
                         <p class="meta">Location: Westside Clinic area • 5km away</p>
                         <p class="meta">Age: 28 • Gender: Male</p>
                     </div>
-                    <button class="btn-secondary">Request Donation</button>
+                    <button class="btn-secondary" onclick="requestDonation('Community Member', this)">Request Donation </button>
                 </div>
                 <div class="donor-card">
                     <div class="blood-badge">A+</div>
@@ -145,7 +162,7 @@
                         <p class="meta">Location: North Park • 12km away</p>
                         <p class="meta">Age: 34 • Gender: Female</p>
                     </div>
-                    <button class="btn-secondary">Request Donation</button>
+                    <button class="btn-secondary" onclick="requestDonation('Community Member', this)">Request Donation </button>
                 </div>
                  <div class="donor-card">
                     <div class="blood-badge">B+</div>
@@ -154,7 +171,7 @@
                         <p class="meta">Location: Eastside General • 2km away</p>
                         <p class="meta">Age: 41 • Gender: Male</p>
                     </div>
-                    <button class="btn-secondary">Request Donation</button>
+                    <button class="btn-secondary" onclick="requestDonation('Community Member', this)">Request Donation </button>
                 </div>
             </div>
         </section>
@@ -192,7 +209,7 @@
     <footer class="footer reveal">
         <div class="container footer-content">
             <div class="footer-brand">
-                <h2>🩸 LifeDrop<span class="dot">.</span></h2>
+                <h2>🩸 Life Bank<span class="dot">.</span></h2>
                 <p>Connecting communities to save lives through seamless, localized blood donation.</p>
             </div>
             <div class="footer-links">
@@ -212,6 +229,7 @@
         </div>
     </footer>
 
+    <div id="toast-container"></div>
     <script src="./style/app.js"></script>
 </body>
 </html>
