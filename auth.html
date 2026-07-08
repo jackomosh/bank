@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account | Life Bank</title>
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🩸 Life Bank<span class="dot">.</span></div>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <div class="nav-links" id="nav-links">
+                <a href="#dashboard">Find Blood</a>
+                <a href="#learn">Why Donate?</a>
+                <a href="#">Requests</a>
+                <a href="auth.html" class="btn-outline">Donor Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="auth-wrapper">
+        <div class="modal-content">
+            <div id="login-view">
+                <h3>Login to Donor Portal</h3>
+                <form>
+                    <label>Email</label>
+                    <input type="email" class="auth-input" placeholder="Email" required>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <label>Password</label>
+                        <a href="#" onclick="showView('forgot-view')" style="font-size: 0.8rem; color: var(--primary);">Forgot password?</a>
+                    </div>
+                    <input type="password" class="auth-input" placeholder="Password" required>
+                    
+                    <div id="login-error" class="auth-error">Invalid credentials.</div>
+                    <button type="submit" class="btn-primary" style="width: 100%;">Login</button>
+                </form>
+                <p style="text-align: center; margin-top: 1rem;">Don't have an account? <a href="#" onclick="showView('signup-view')">Create account</a></p>
+            </div>
+
+            <div id="signup-view" style="display:none;">
+                <h3>Join as a Donor</h3>
+                <form>
+                    <input type="text" class="auth-input" placeholder="Full Name" required>
+                    <input type="email" class="auth-input" placeholder="Email" required>
+                    <input type="tel" class="auth-input" placeholder="Phone Number" required>
+                    <input type="password" class="auth-input" placeholder="Password" required>
+                    
+                    <div style="margin-bottom: 1.5rem; font-size: 0.85rem;">
+                        <input type="checkbox" id="terms" for="terms" required> I accept the <a href="#">Terms and Conditions </a>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary" style="width: 100%;">Register</button>
+                </form>
+                <p style="text-align: center; margin-top: 1rem;"><a href="#" onclick="showView('login-view')">Back to Login</a></p>
+            </div>
+
+            <div id="forgot-view" style="display:none;">
+                <h3>Reset Password</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Enter your email to receive a reset link.</p>
+                <input type="email" class="auth-input" placeholder="Email">
+                <button class="btn-primary" style="width: 100%;">Send Reset Link</button>
+                <p><a href="#" onclick="showView('login-view')">Back to Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer reveal">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h2>🩸 Life Bank<span class="dot">.</span></h2>
+                <p>Connecting communities to save lives through seamless, localized blood donation.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="#dashboard">Find Blood</a>
+                <a href="#learn">Why Donate</a>
+                <a href="#">Register as Donor</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Emergency Contact</h4>
+                <p>📞 +254-703-489-975</p>
+                <p>✉️ urgent@lifedrop.community</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 LifeDrop Community Blood Bank. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="./style/app.js"> </script>
+</body>
+</html>
